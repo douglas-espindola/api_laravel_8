@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // List artigos
-Route::get('/artigos', [ArtigoController::class, 'index']);
+Route::get('artigos', [ArtigoController::class, 'index']);
 
 // List single artigo
 Route::get('artigo/{id}', [ArtigoController::class, 'show']);
