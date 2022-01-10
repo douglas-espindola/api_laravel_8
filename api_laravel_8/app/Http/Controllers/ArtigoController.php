@@ -26,13 +26,6 @@ class ArtigoController extends Controller
      */
     public function create()
     {
-        $artigo = new Artigo;
-        $artigo->titulo = $request->input('titulo');
-        $artigo->conteudo = $request->input('conteudo');
-
-        if ($artigo->save()) {
-            return new ArtigoResource($artigo);
-        }
     }
 
     /**
@@ -43,7 +36,13 @@ class ArtigoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $artigo = new Artigo;
+        $artigo->titulo = $request->input('titulo');
+        $artigo->conteudo = $request->input('conteudo');
+
+        if ($artigo->save()) {
+            return new ArtigoResource($artigo);
+        }
     }
 
     /**
@@ -66,7 +65,6 @@ class ArtigoController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -78,7 +76,13 @@ class ArtigoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $artigo = Artigo::findOrFail($request->id);
+        $artigo->titulo = $request->input('titulo');
+        $artigo->conteudo = $request->input('conteudo');
+
+        if ($artigo->save()) {
+            return new ArtigoResource($artigo);
+        }
     }
 
     /**
@@ -89,6 +93,9 @@ class ArtigoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $artigo = Artigo::findOrFail($id);
+        if ($artigo->delete()) {
+            return new ArtigoResource($artigo);
+        }
     }
 }
