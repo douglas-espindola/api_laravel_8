@@ -29,6 +29,10 @@ class ArtigoController extends Controller
         $artigo = new Artigo;
         $artigo->titulo = $request->input('titulo');
         $artigo->conteudo = $request->input('conteudo');
+
+        if ($artigo->save()) {
+            return new ArtigoResource($artigo);
+        }
     }
 
     /**
